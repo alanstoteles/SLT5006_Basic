@@ -4,8 +4,8 @@
   email: atejeda-ramirez@murata.com
   Description: This a basic script to read the Murata SLT5006 Soil Sensor vairables, for Debug/Manual please uncoment ManualMode() function.
                For debug_lvl:
-               0 -  Only print results
-               1 -  Print commands and results
+               0 -  Only print measurements from the sensor
+               1 -  Print results of each command sent and measurements from the sensor
                2 -  Manual Mode 
    
 */
@@ -27,7 +27,7 @@ double      _BlukEC;        /// Bulk_EC[dS/m]
 double      _VWC;           /// [%]
 double      _PoreEC;        /// PoreEC[dS/m] 
 
-int debug_lvl=1;
+int debug_lvl=0; //Default, no debug
 
 void setup() {
   Serial.begin(9600); // opens serial port, sets data rate to 9600 bps
@@ -181,7 +181,7 @@ bool read_data(int debug_lvl){
    Serial.print("BlukEC: ");Serial.print(_BlukEC); Serial.println(" dS/m");
    Serial.print("VWC: ");Serial.print( _VWC); Serial.println(" %");
    Serial.print("PoreEC: ");Serial.print(_PoreEC); Serial.println(" dS/m");
-   delay(3000);
+   //delay(3000);
    memset(meas_data, 0, sizeof(meas_data));
 
   Serial.println("-------------");
